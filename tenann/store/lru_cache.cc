@@ -190,12 +190,12 @@ void LRUCache::set_capacity(size_t capacity) {
   }
 }
 
-uint64_t LRUCache::get_lookup_count() {
+size_t LRUCache::get_lookup_count() {
   std::lock_guard l(_mutex);
   return _lookup_count;
 }
 
-uint64_t LRUCache::get_hit_count() {
+size_t LRUCache::get_hit_count() {
   std::lock_guard l(_mutex);
   return _hit_count;
 }

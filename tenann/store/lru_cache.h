@@ -272,8 +272,8 @@ class LRUCache {
   void erase(const CacheKey& key, uint32_t hash);
   int prune();
 
-  uint64_t get_lookup_count();
-  uint64_t get_hit_count();
+  size_t get_lookup_count();
+  size_t get_hit_count();
   size_t get_usage();
   size_t get_capacity();
 
@@ -322,8 +322,8 @@ class ShardedLRUCache : public Cache {
   void set_capacity(size_t capacity) override;
   size_t get_memory_usage() override;
   size_t get_capacity() override;
-  uint64_t get_lookup_count() override;
-  uint64_t get_hit_count() override;
+  size_t get_lookup_count() override;
+  size_t get_hit_count() override;
   bool adjust_capacity(int64_t delta, size_t min_capacity = 0) override;
 
  private:

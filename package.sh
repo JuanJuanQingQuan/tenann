@@ -37,10 +37,10 @@ rm -rf ${TENANN_OUTPUT}/tmp
 mkdir -p ${TENANN_OUTPUT}/tmp
 
 # Copy all third-party libraries to the output directory
-cp /opt/gcc/usr/lib64/libquadmath.a ${TENANN_OUTPUT}/tmp
-cp /usr/local/lib/libgfortran.a ${TENANN_OUTPUT}/tmp
-cp /opt/gcc/usr/lib64/libgomp.a ${TENANN_OUTPUT}/tmp
-cp ${TENANN_THIRDPARTY}/installed/lib/libopenblas-r0.3.25.a ${TENANN_OUTPUT}/tmp
+cp /usr/local/Cellar/gcc/14.1.0_2/lib/gcc/current/libquadmath.a ${TENANN_OUTPUT}/tmp
+cp /usr/local/Cellar/gcc/14.1.0_2/lib/gcc/current/libgfortran.a ${TENANN_OUTPUT}/tmp
+cp /usr/local/Cellar/gcc/14.1.0_2/lib/gcc/current/libgomp.a ${TENANN_OUTPUT}/tmp
+cp ${TENANN_THIRDPARTY}/installed/lib/libopenblasp-r0.3.27.a ${TENANN_OUTPUT}/tmp
 cp ${TENANN_THIRDPARTY}/installed/lib/libfaiss.a ${TENANN_OUTPUT}/tmp
 cp ${TENANN_THIRDPARTY}/installed/lib/libfaiss_avx2.a ${TENANN_OUTPUT}/tmp
 cp ${TENANN_OUTPUT}/lib/libtenann.a ${TENANN_OUTPUT}/tmp
@@ -48,32 +48,48 @@ cp ${TENANN_OUTPUT}/lib/libtenann_avx2.a ${TENANN_OUTPUT}/tmp
 
 # Merge all static libraries into one
 cd ${TENANN_OUTPUT}/tmp
-echo "create libtenann-bundle.a
-addlib libtenann.a
-addlib libfaiss.a
-addlib libopenblas-r0.3.25.a
-addlib libgomp.a
-addlib libgfortran.a
-addlib libquadmath.a
-save
-end" >libtenann-bundle.mri
 
-ar -M <libtenann-bundle.mri
+#echo "create libtenann-bundle.a
+#addlib libtenann.a
+#addlib libfaiss.a
+#addlib libopenblasp-r0.3.27.a
+#addlib libgomp.a
+#addlib libgfortran.a
+#addlib libquadmath.a
+#save
+#end" > libtenann-bundle.mri
+
+#ar -M <libtenann-bundle.mri
+libname="libtenann-bundle.a"
+files=("libtenann.a" "libfaiss.a" "libopenblasp-r0.3.27.a" "libgomp.a" "libgfortran.a" "libquadmath.a")
+if [ -f $libname ]; then
+    rm $libname
+fi
+ar -rc $libname "${files[@]}"
+ranlib $libname
 cp ${TENANN_OUTPUT}/tmp/libtenann-bundle.a ${TENANN_OUTPUT}/lib
 
 # Merge all static libraries into one
 cd ${TENANN_OUTPUT}/tmp
-echo "create libtenann-bundle-avx2.a
-addlib libtenann_avx2.a
-addlib libfaiss_avx2.a
-addlib libopenblas-r0.3.25.a
-addlib libgomp.a
-addlib libgfortran.a
-addlib libquadmath.a
-save
-end" >libtenann-bundle-avx2.mri
+#echo "create libtenann-bundle-avx2.a
+#addlib libtenann_avx2.a
+#addlib libfaiss_avx2.a
+#addlib libopenblasp-r0.3.27.a
+#addlib libgomp.a
+#addlib libgfortran.a
+#addlib libquadmath.a
+#save
+#end" >libtenann-bundle-avx2.mri
+#
+#ar -M <libtenann-bundle-avx2.mri
 
-ar -M <libtenann-bundle-avx2.mri
+libname="libtenann-bundle-avx2.a"
+files=("libtenann_avx2.a" "libfaiss_avx2.a" "libopenblasp-r0.3.27.a" "libgomp.a" "libgfortran.a" "libquadmath.a")
+if [ -f $libname ]; then
+    rm $libname
+fi
+ar -rc $libname "${files[@]}"
+ranlib $libname
 cp ${TENANN_OUTPUT}/tmp/libtenann-bundle-avx2.a ${TENANN_OUTPUT}/lib
 
 # Clean temporary directory

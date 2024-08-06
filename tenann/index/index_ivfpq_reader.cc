@@ -341,7 +341,7 @@ InvertedLists* BlockCacheInvertedListsIOHook::read_ArrayInvertedLists(
   ails->start_offset = ftell(fdesc);
   size_t o = ails->start_offset;
 
-  ails->fd = open(f->name.c_str(), O_RDONLY | O_DIRECT);
+  ails->fd = open(f->name.c_str(), O_RDONLY);
   FAISS_THROW_IF_NOT_FMT(ails->fd != -1, "could not open file %s with O_DIRECT: %s", reader->name,
                          strerror(errno));
 

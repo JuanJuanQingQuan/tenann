@@ -97,7 +97,7 @@ check_prerequest "automake --version" "automake"
 
 # sudo apt-get install ldconfig
 # sudo yum install ldconfig
-check_prerequest "ldconfig --version" "ldconfig"
+# check_prerequest "ldconfig --version" "ldconfig"
 
 BUILD_SYSTEM=${BUILD_SYSTEM:-make}
 
@@ -289,7 +289,7 @@ export CXXFLAGS=$GLOBAL_CXXFLAGS
 export CFLAGS=$GLOBAL_CFLAGS
 
 build_fmt
-build_openblas # must before faiss
+# build_openblas # must before faiss
 build_faiss
 build_gtest
 # build_pybind11

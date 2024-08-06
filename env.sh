@@ -52,13 +52,12 @@ if ! ${PYTHON} --version; then
     fi
 fi
 
-export CC=/usr/bin/gcc
 # set GCC HOME
 if [[ -z ${TENANN_GCC_HOME} ]]; then
-    #export TENANN_GCC_HOME=$(dirname `which gcc`)/..
-    # TODO
-    export TENANN_GCC_HOME=/opt/gcc/usr
+    export TENANN_GCC_HOME="$(dirname "$(which gcc)")/.."
 fi
+
+export CC=${TENANN_GCC_HOME}/bin/gcc
 
 gcc_ver=`${TENANN_GCC_HOME}/bin/gcc -dumpfullversion -dumpversion`
 required_ver="5.3.1"

@@ -30,6 +30,7 @@ if [ -z $BUILD_TYPE ]; then
 fi
 
 # set COMPILER
+export TENANN_GCC_HOME="$(dirname "$(which gcc)")/.."
 if [[ ! -z ${TENANN_GCC_HOME} ]]; then
     export CC=${TENANN_GCC_HOME}/bin/gcc
     export CPP=${TENANN_GCC_HOME}/bin/cpp
@@ -60,16 +61,16 @@ fi
 set -eo pipefail
 . ${TENANN_HOME}/env.sh
 
-if [[ $OSTYPE == darwin* ]]; then
-    PARALLEL=$(sysctl -n hw.ncpu)
-    # We know for sure that build-thirdparty.sh will fail on darwin platform, so just skip the step.
-else
-    if [[ ! -f ${TENANN_THIRDPARTY}/installed/include/faiss/Index.h ]]; then
-        echo "Thirdparty libraries need to be build ..."
-        sh ${TENANN_THIRDPARTY}/build-thirdparty.sh
-    fi
-    PARALLEL=$(($(nproc) / 4 + 1))
+# if [[ $OSTYPE == darwin* ]]; then
+#     PARALLEL=$(sysctl -n hw.ncpu)
+#     # We know for sure that build-thirdparty.sh will fail on darwin platform, so just skip the step.
+# else
+if [[ ! -f ${TENANN_THIRDPARTY}/installed/include/faiss/Index.h ]]; then
+    echo "Thirdparty libraries need to be build ..."
+    sh ${TENANN_THIRDPARTY}/build-thirdparty.sh
 fi
+PARALLEL=$(($(nproc) / 4 + 1))
+# fi
 
 # Check args
 usage() {
