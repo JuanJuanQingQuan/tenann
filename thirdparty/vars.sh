@@ -84,10 +84,10 @@ if [ -f /etc/lsb-release ]; then
 fi
 
 # fmt
-FMT_DOWNLOAD="https://github.com/fmtlib/fmt/releases/download/8.1.1/fmt-8.1.1.zip"
-FMT_NAME="fmt-8.1.1.zip"
-FMT_SOURCE="fmt-8.1.1"
-FMT_MD5SUM="16dcd48ecc166f10162450bb28aabc87"
+FMT_DOWNLOAD="https://github.com/fmtlib/fmt/archive/7.1.3.tar.gz"
+FMT_NAME="fmt-7.1.3.tar.gz"
+FMT_SOURCE="fmt-7.1.3"
+FMT_MD5SUM="2522ec65070c0bda0ca288677ded2831"
 
 # faiss
 FAISS_DOWNLOAD="https://github.com/facebookresearch/faiss/archive/refs/tags/v1.7.3.tar.gz"
@@ -96,16 +96,16 @@ FAISS_SOURCE=faiss-1.7.3
 FAISS_MD5SUM="632c5f465e80ebf10a7e2a54e5c853f7"
 
 # openblas
-OPENBLAS_DOWNLOAD="https://github.com/OpenMathLib/OpenBLAS/releases/download/v0.3.25/OpenBLAS-0.3.25.tar.gz"
-OPENBLAS_NAME=OpenBLAS-0.3.25.tar.gz
-OPENBLAS_SOURCE=OpenBLAS-0.3.25
-OPENBLAS_MD5SUM="48384e324cd1cdcfbdb0d2e16ca55327"
+OPENBLAS_DOWNLOAD="https://github.com/OpenMathLib/OpenBLAS/releases/download/v0.3.27/OpenBLAS-0.3.27.tar.gz"
+OPENBLAS_NAME=OpenBLAS-0.3.27.tar.gz
+OPENBLAS_SOURCE=OpenBLAS-0.3.27
+OPENBLAS_MD5SUM="ef71c66ffeb1ab0f306a37de07d2667f"
 
 # gtest
-GTEST_DOWNLOAD="https://github.com/google/googletest/archive/release-1.10.0.tar.gz"
-GTEST_NAME=googletest-release-1.10.0.tar.gz
-GTEST_SOURCE=googletest-release-1.10.0
-GTEST_MD5SUM="ecd1fa65e7de707cd5c00bdac56022cd"
+GTEST_DOWNLOAD="https://github.com/google/googletest/archive/release-1.11.0.tar.gz"
+GTEST_NAME=googletest-release-1.11.0.tar.gz
+GTEST_SOURCE=googletest-release-1.11.0
+GTEST_MD5SUM="e8a8df240b6938bb6384155d4c37d937"
 
 # pybind11
 PYBIND11_DOWNLOAD="https://github.com/pybind/pybind11/archive/refs/tags/v2.11.1.tar.gz"
